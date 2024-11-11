@@ -16,9 +16,9 @@ listOfPowers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
 matrix :: [[Int]]
 matrix = 
-    [ [1, 1, 1]
-    , [2, 2, 2]
-    , [3, 3, 3]
+    [ [1, 2, 3, 1]
+    , [4, 5, 6, 0]
+    , [7, 8, 9, -1]
     ]
 
 sortByKey :: String -> [Map.Map String String] -> [Map.Map String String]
@@ -29,8 +29,9 @@ powerList :: Int -> [Int] -> [Int]
 powerList power numbers = 
     map ( \n -> n ^ power ) numbers
     
--- transposeMatrix :: [[a]] -> [[a]]
--- transposeMatrix = 
+transposeMatrix :: [[a]] -> [[a]]
+transposeMatrix ([]:_) = []
+transposeMatrix matrix = (map head matrix) : transposeMatrix (map tail matrix)
 
 
 
@@ -48,3 +49,6 @@ main = do
   let poweredList = powerList power listOfPowers
   print poweredList
   print "======= EXERCISE 3 ========\n"
+  let transposedMatrix = transposeMatrix matrix
+  print transposedMatrix
+  print "======= EXERCISE 4 ========\n"
