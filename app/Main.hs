@@ -20,6 +20,8 @@ matrix =
     , [4, 5, 6, 0]
     , [7, 8, 9, -1]
     ]
+anotherList :: [String]
+anotherList = ["A", "B", "C", "D", "E"]
 
 sortByKey :: String -> [Map.Map String String] -> [Map.Map String String]
 sortByKey key maps = 
@@ -33,7 +35,9 @@ transposeMatrix :: [[a]] -> [[a]]
 transposeMatrix ([]:_) = []
 transposeMatrix matrix = (map head matrix) : transposeMatrix (map tail matrix)
 
-
+deleteElements ::Eq a => [a] -> [a] -> [a]
+deleteElements elementsToDelete list = 
+    filter (\x -> not $ x `elem` elementsToDelete) list
 
 main :: IO ()
 main = do     
@@ -52,3 +56,5 @@ main = do
   let transposedMatrix = transposeMatrix matrix
   print transposedMatrix
   print "======= EXERCISE 4 ========\n"
+  let newList = deleteElements ["A", "B"] anotherList
+  print newList
