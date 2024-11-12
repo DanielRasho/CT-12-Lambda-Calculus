@@ -3,6 +3,7 @@ module Main where
 import qualified Data.Map as Map
 import Data.List (sortOn)
 
+-- DATA DEFINITION --------------------------
 listOfMaps :: [Map.Map String String]
 listOfMaps = 
   [ Map.fromList [("make", "Nokia"), ("model", "216"), ("color", "Black")]
@@ -23,6 +24,8 @@ matrix =
 anotherList :: [String]
 anotherList = ["A", "B", "C", "D", "E"]
 
+-- FUNCTIONS DEFINITION --------------------------
+
 sortByKey :: String -> [Map.Map String String] -> [Map.Map String String]
 sortByKey key maps = 
   sortOn (\m -> Map.lookup key m) maps
@@ -33,11 +36,13 @@ powerList power numbers =
     
 transposeMatrix :: [[a]] -> [[a]]
 transposeMatrix ([]:_) = []
-transposeMatrix matrix = (map head matrix) : transposeMatrix (map tail matrix)
+transposeMatrix matrix = (map head matrix) : transposeMatrix (map tail matrix) -- use recursion, by transposing one column at a time
 
 deleteElements ::Eq a => [a] -> [a] -> [a]
 deleteElements elementsToDelete list = 
     filter (\x -> not $ x `elem` elementsToDelete) list
+
+-- EXECUTION ----------------------------------------
 
 main :: IO ()
 main = do     
@@ -56,5 +61,5 @@ main = do
   let transposedMatrix = transposeMatrix matrix
   print transposedMatrix
   print "======= EXERCISE 4 ========\n"
-  let newList = deleteElements ["A", "B"] anotherList
+  let newList = deleteElements ["A", "E"] anotherList
   print newList
